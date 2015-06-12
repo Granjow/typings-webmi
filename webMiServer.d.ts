@@ -31,20 +31,20 @@ declare module AtviseServerMi {
         nodeclass: Number;
         parent: String;
         typedefinition: String;
-        reference: String;
-        modellingrule: String;
-        browsename: String;
-        browsenamens: Number;
-        displaysname: String;
-        displaysnamelocale: String;
-        description: String;
+        reference?: String;
+        modellingrule?: String;
+        browsename?: String;
+        browsenamens?: Number;
+        displaysname?: String;
+        displaysnamelocale?: String;
+        description?: String;
 
         /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
         datatype: String;
         /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
         value: any;
         /** For NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE; optional */
-        valuerank: Number;
+        valuerank?: Number;
     }
 
     export interface UaNode {
@@ -115,11 +115,8 @@ declare module AtviseServerMi {
 
 }
 
-declare
-var request:AtviseServerMi.Request;
+declare var request:AtviseServerMi.Request;
 
-declare
-var UaNode:AtviseServerMi.UaNode;
+declare var UaNode:AtviseServerMi.UaNode;
 
-declare
-function call(script:String, params:Object):any;
+declare function call(script:String, params:Object):any;
