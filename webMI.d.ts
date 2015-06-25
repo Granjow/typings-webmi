@@ -17,7 +17,7 @@ declare module AtviseWebMI {
 
         subscribe(nodeId: String, fn: Function): Number;
 
-        unscubscribe(subscriptionId: Number);
+        unsubscribe(subscriptionId: Number);
     }
 
     export interface WebMI {
