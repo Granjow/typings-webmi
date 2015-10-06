@@ -43,9 +43,9 @@ declare module AtviseServerMi {
         description?: String;
 
         /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
-        datatype: String;
+        datatype?: String;
         /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
-        value: any;
+        value?: any;
         /** For NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE; optional */
         valuerank?: Number;
     }
@@ -187,7 +187,6 @@ declare module AtviseServerMi {
 
         /* Data Types */
 
-
         /** Data Type */
         BOOLEAN: Number;
         /** Data Type */
@@ -206,6 +205,12 @@ declare module AtviseServerMi {
         STRING: Number;
         /** Data Type */
         DATETIME: Number;
+
+
+        /* Type Definitions */
+
+        BASEVARIABLETYPE: String;
+        FOLDERTYPE: String;
 
 
         /* Value Ranks */
