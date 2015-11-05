@@ -36,12 +36,32 @@ declare module AtviseWebMI {
 
         unsubscribe(subscriptionId:Number);
 
+        /**
+         * This function makes a query to the server and requests historical data. The parameter "filters" is used
+         * to constrain the requested data. The result will be received in the callback function.
+         */
         queryFilter(filters:QueryFilter, fn:Function);
+
+        login(username:String, password:String, fn:Function);
+        logout(fn:Function);
+
+        /**
+         * Pauses the data communication for all subscriptions in the current display (counterpart to webMI.data.resume).
+         */
+        pause();
+    }
+
+    export interface Alarm {
+        accept(conditions:any[]);
+        acceptDisplay();
+        subscribe(conditionId, fn:Function);
+        unsubscribe(conditionId);
     }
 
     export interface WebMI {
 
-        data: Data
+        data: Data;
+        alarm: Alarm;
     }
 
 }
