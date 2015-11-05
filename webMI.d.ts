@@ -8,6 +8,15 @@ declare module AtviseWebMI {
         address:String;
     }
 
+    export interface QueryFilter {
+        type:Array<String>;
+        address:Array<String>;
+        timestamp:Array<String>;
+        value:Array<String>;
+        priority:Array<String>;
+        username:Array<String>;
+    }
+
     export interface Data {
         call(name:String, params:Object, fn?:Function);
 
@@ -21,11 +30,13 @@ declare module AtviseWebMI {
          */
         write(nodes:String[], values:any[], fn?:Function);
 
-        read(nodeId: String, fn: Function): NodeValue;
+        read(nodeId:String, fn:Function): NodeValue;
 
-        subscribe(nodeId: String, fn: Function): Number;
+        subscribe(nodeId:String, fn:Function): Number;
 
-        unsubscribe(subscriptionId: Number);
+        unsubscribe(subscriptionId:Number);
+
+        queryFilter(filters:QueryFilter, fn:Function);
     }
 
     export interface WebMI {
@@ -35,5 +46,4 @@ declare module AtviseWebMI {
 
 }
 
-declare
-var webMI:AtviseWebMI.WebMI;
+declare var webMI:AtviseWebMI.WebMI;
