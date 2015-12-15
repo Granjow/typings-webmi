@@ -33,6 +33,7 @@ declare module AtviseWebMI {
         read(nodeId:String, fn:Function): NodeValue;
 
         subscribe(nodeId:String, fn:Function): Number;
+        subscribeBlock(nodeIds: String[], alarmIds: String[], fn:Function);
 
         unsubscribe(subscriptionId:Number);
 
