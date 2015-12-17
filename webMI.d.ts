@@ -29,8 +29,10 @@ declare module AtviseWebMI {
          * Note that, when writing booleans, numbers != 0 resolve to true.
          */
         write(nodes:String[], values:any[], fn?:Function);
+        write(nodes:String, values:any, fn?:Function);
 
         read(nodeId:String, fn:Function): NodeValue;
+        read(nodeId:String[], fn:Function): NodeValue;
 
         subscribe(nodeId:String, fn:Function): Number;
         subscribeBlock(nodeIds: String[], alarmIds: String[], fn:Function);
