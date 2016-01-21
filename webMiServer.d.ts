@@ -236,6 +236,36 @@ declare module AtviseServerMi {
 
     var UaNode:{
         new(address:String): UaNode;
+    };
+
+    export interface Database {
+        /**
+         * Performs a live backup of the database.
+         *
+         * This functions creates a nodes.db backup of the currently active database.
+         * By default, backup is stored to "<ProjectDir>/nodes_STARTTIME.db". Filename
+         * can be assigned with an absolute path or relative to the project directory.
+         * Default parameters should be ok for most cases.
+         * Backup status/progress can be viewed in ModuleStatistics.DATABASE.BackupStatus and
+         * ModuleStatistics.DATABASE.BackupProgress.
+         *
+         * @param options Optional:
+         * <ul>
+         * <li>filename OPTIONAL_STRING_DEFAULT="";
+         * Specifies the filename where to save the database copy. If empty, default is used.</li>
+         * <li>timeout OPTIONAL_INT_DEFAULT=300;
+         * Specifies the timeout, in seconds, for database backup.</li>
+         * <li>pages OPTIONAL_INT_DEFAULT=10000;
+         * Specifies the amount of pages being copied to the new database in each iteration.</li>
+         * <li>sleep OPTIONAL_INT_DEFAULT=40;
+         * Specifies the interval, in milliseconds, to wait between two iterations.</li>
+         * </ul>
+         */
+        backup(options: {filename, timeout, pages, sleep} = {filename: '', timeout: 300, pages: 10000, sleep: 40})
+    }
+
+    export interface server {
+        database:Database;
     }
 
 }
@@ -245,3 +275,5 @@ declare var request:AtviseServerMi.Request;
 declare var UaNode:AtviseServerMi.UaNode;
 
 declare function call(script:String, params:Object):any;
+
+declare var server:AtviseServerMi.server;
