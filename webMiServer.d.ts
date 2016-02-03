@@ -65,13 +65,13 @@ declare module AtviseServerMi {
          * @param referenceTypeId Specifies the reference to add by its UaNodeID.
          * @param targetNodeId Specifies the target node by its UaNodeID.
          */
-        addreference(referenceTypeId:String, targetNodeId:String): Status;
+        addreference(referenceTypeId: String, targetNodeId: String): Status;
         /**
          * Deletes a reference to an UaNode.
          * @param referenceTypeId Specifies the reference to add by its UaNodeID.
          * @param targetNodeId Specifies the target node by its UaNodeID.
          */
-        deletereference(referenceTypeId:String, targetNodeId:String): Status;
+        deletereference(referenceTypeId: String, targetNodeId: String): Status;
 
         /**
          * Assigns value/status/sourcetime properties to UaNode specified by the UaNodeID.
@@ -80,12 +80,12 @@ declare module AtviseServerMi {
         assign(obj): Status;
 
         /** Browse the UaNode specified by the input object. */
-        browse(params?:BrowseArgs): BrowseResultItem[];
+        browse(params?: BrowseArgs): BrowseResultItem[];
 
         /**
          * Creates a UaNode specified by the UaNodeID
          */
-        create(obj:CreateArgs): Status;
+        create(obj: CreateArgs): Status;
 
         /** Removes the UaNode. Returns the status of the operation. */
         remove(): Status;
@@ -97,16 +97,16 @@ declare module AtviseServerMi {
         toString(): String;
 
         /** @param statusCode Defaults to this.status */
-        statusToString(statusCode?:Number): String;
+        statusToString(statusCode?: Number): String;
 
         /** @param nodeClass Defaults to this.nodeclass */
-        nodeClassToString(nodeClass?:Number): String;
+        nodeClassToString(nodeClass?: Number): String;
 
-        datahistory(obj:DatahistoryArgs): DataHistory;
+        datahistory(obj: DatahistoryArgs): DataHistory;
         good(): Status;
         bad():Status;
         uncertain():Status;
-        equal(node1:UaNode, node2:UaNode);
+        equal(node1: UaNode, node2: UaNode);
 
         /** NodeID of the type definition */
         typedefinition: String;
@@ -234,9 +234,16 @@ declare module AtviseServerMi {
 
     }
 
-    var UaNode:{
-        new(address:String): UaNode;
+    var UaNode: {
+        new(address: String): UaNode;
     };
+
+    export interface BackupArgs {
+        filename:String;
+        timeout:Number;
+        pages:Number;
+        sleep:Number;
+    }
 
     export interface Database {
         /**
@@ -261,7 +268,11 @@ declare module AtviseServerMi {
          * Specifies the interval, in milliseconds, to wait between two iterations.</li>
          * </ul>
          */
-        backup(options: {filename, timeout, pages, sleep} = {filename: '', timeout: 300, pages: 10000, sleep: 40})
+        backup(options: BackupArgs);
+
+        setConfig(name: string, value: any);
+
+        getConfig(name: string):any;
     }
 
     export interface server {
@@ -270,10 +281,10 @@ declare module AtviseServerMi {
 
 }
 
-declare var request:AtviseServerMi.Request;
+declare var request: AtviseServerMi.Request;
 
-declare var UaNode:AtviseServerMi.UaNode;
+declare var UaNode: AtviseServerMi.UaNode;
 
-declare function call(script:String, params:Object):any;
+declare function call(script: String, params: Object): any;
 
-declare var server:AtviseServerMi.server;
+declare var server: AtviseServerMi.server;
