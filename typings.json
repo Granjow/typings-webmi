@@ -1,4 +1,7 @@
 {
-  "name":"webmi",
-  "main":"webMI.d.ts"
+  "name": "webmi",
+  "files": [
+    "webMI.d.ts",
+    "webMiServer.d.ts"
+  ]
 }
