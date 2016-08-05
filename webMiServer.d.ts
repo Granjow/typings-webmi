@@ -3,10 +3,10 @@ interface Status {
 }
 
 interface BackupArgs {
-    filename : String;
-    timeout : Number;
-    pages : Number;
-    sleep : Number;
+    filename : string;
+    timeout : number;
+    pages : number;
+    sleep : number;
 }
 
 
@@ -16,44 +16,44 @@ interface Request {
 
 interface BrowseArgs {
     /** See UaNode.BROWSEDIRECTION_* */
-    direction : Number;
+    direction : number;
     /** Reference type, for example UaNode.PROPERTY */
-    reference : String;
-    subtype : Boolean;
+    reference : string;
+    subtype : boolean;
     /** See UaNode.NODECLASS_* */
-    nodeclass : Number;
-    maxresult : Number;
-    typedefinition : String;
+    nodeclass : number;
+    maxresult : number;
+    typedefinition : string;
     /** Used in conjunction with typedefinition and nodeclass.
      *  If TRUE then all reachable nodes will be searched otherwise only direct referenced nodes. */
-    recursive : Boolean;
-    exclude : String[];
+    recursive : boolean;
+    exclude : string[];
 }
 
 interface BrowseResultItem {
     node : UaNode;
     reference : UaNode;
-    isforward : Boolean;
+    isforward : boolean;
 }
 
 interface CreateArgs {
-    nodeclass : Number;
-    parent : String;
-    typedefinition : Number;
-    reference? : String;
-    modellingrule? : String;
-    browsename? : String;
-    browsenamens? : Number;
-    displaysname? : String;
-    displaysnamelocale? : String;
-    description? : String;
+    nodeclass : number;
+    parent : string;
+    typedefinition : number;
+    reference? : string;
+    modellingrule? : string;
+    browsename? : string;
+    browsenamens? : number;
+    displaysname? : string;
+    displaysnamelocale? : string;
+    description? : string;
 
     /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
-    datatype? : String;
+    datatype? : string;
     /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
     value? : any;
     /** For NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE; optional */
-    valuerank? : Number;
+    valuerank? : number;
 }
 
 interface DatahistoryArgs {
@@ -102,13 +102,13 @@ interface UaNode {
      * @param referenceTypeId Specifies the reference to add by its UaNodeID.
      * @param targetNodeId Specifies the target node by its UaNodeID.
      */
-    addreference( referenceTypeId : String, targetNodeId : String ) : Status;
+    addreference( referenceTypeId : string, targetNodeId : string ) : Status;
     /**
      * Deletes a reference to an UaNode.
      * @param referenceTypeId Specifies the reference to add by its UaNodeID.
      * @param targetNodeId Specifies the target node by its UaNodeID.
      */
-    deletereference( referenceTypeId : String, targetNodeId : String ) : Status;
+    deletereference( referenceTypeId : string, targetNodeId : string ) : Status;
 
     /**
      * Assigns value/status/sourcetime properties to UaNode specified by the UaNodeID.
@@ -128,16 +128,16 @@ interface UaNode {
     remove() : Status;
 
     /** Returns true if the UaNode exists in the address space, false otherwise. */
-    exists() : Boolean;
+    exists() : boolean;
 
     /** Converts the node to a string. */
-    toString() : String;
+    tostring() : string;
 
     /** @param statusCode Defaults to this.status */
-    statusToString( statusCode? : Number ) : String;
+    statusTostring( statusCode? : number ) : string;
 
     /** @param nodeClass Defaults to this.nodeclass */
-    nodeClassToString( nodeClass? : Number ) : String;
+    nodeClassTostring( nodeClass? : number ) : string;
 
     datahistory( obj : DatahistoryArgs ) : DataHistory;
     good() : Status;
@@ -146,22 +146,22 @@ interface UaNode {
     equal( node1 : UaNode, node2 : UaNode );
 
     /** NodeID of the type definition */
-    typedefinition : String;
+    typedefinition : string;
 
     value;
     status;
     servertime;
     sourcetime;
-    browsename : String;
-    browsenamens : String;
-    displayname : String;
-    displaynamelocale : String;
+    browsename : string;
+    browsenamens : string;
+    displayname : string;
+    displaynamelocale : string;
     /** Node class enum. See UaNode.NODECLASS_### constants */
-    nodeclass : String;
-    nodeid : String;
-    nodeaddr : String;
-    datatype : String;
-    valuerank : Number;
+    nodeclass : string;
+    nodeid : string;
+    nodeaddr : string;
+    datatype : string;
+    valuerank : number;
 }
 
 interface UaNodeStatic {
@@ -170,114 +170,114 @@ interface UaNodeStatic {
 
     /* Browse Directions */
 
-    BROWSEDIRECTION_FORWARD : Number;
-    BROWSEDIRECTION_INVERSE : Number;
-    BROWSEDIRECTION_BOTH : Number;
+    BROWSEDIRECTION_FORWARD : number;
+    BROWSEDIRECTION_INVERSE : number;
+    BROWSEDIRECTION_BOTH : number;
 
 
 
     /* Node Classes */
 
-    NODECLASS_UNSPECIFIED : Number;
+    NODECLASS_UNSPECIFIED : number;
     /** For example directories */
-    NODECLASS_OBJECT : Number;
+    NODECLASS_OBJECT : number;
     /** For example displays */
-    NODECLASS_VARIABLE : Number;
-    NODECLASS_METHOD : Number;
-    NODECLASS_OBJECTTYPE : Number;
-    NODECLASS_VARIABLETYPE : Number;
-    NODECLASS_REFERENCETYPE : Number;
-    NODECLASS_DATATYPE : Number;
-    NODECLASS_VIEW : Number;
+    NODECLASS_VARIABLE : number;
+    NODECLASS_METHOD : number;
+    NODECLASS_OBJECTTYPE : number;
+    NODECLASS_VARIABLETYPE : number;
+    NODECLASS_REFERENCETYPE : number;
+    NODECLASS_DATATYPE : number;
+    NODECLASS_VIEW : number;
 
     /* Reference Types */
 
     /** Reference type */
-    NONHIERARCHICALREFERENCES : Number;
+    NONHIERARCHICALREFERENCES : number;
     /** Reference type */
-    HIERARCHICALREFERENCES : Number;
+    HIERARCHICALREFERENCES : number;
     /** Reference type */
-    HASCHILD : Number;
+    HASCHILD : number;
     /** Reference type */
-    ORGANIZES : Number;
+    ORGANIZES : number;
     /** Reference type */
-    HASEVENTSOURCE : Number;
+    HASEVENTSOURCE : number;
     /** Reference type */
-    HASTYPEDEFINITION : Number;
+    HASTYPEDEFINITION : number;
     /** Reference type */
-    HASEVENTHISTORY : Number;
+    HASEVENTHISTORY : number;
     /** Reference type */
-    AGGREGATES : Number;
+    AGGREGATES : number;
     /** Reference type */
-    HASSUBTYPE : Number;
+    HASSUBTYPE : number;
     /** Reference type */
-    HASPROPERTY : Number;
+    HASPROPERTY : number;
     /** Reference type */
-    HASCOMPONENT : Number;
+    HASCOMPONENT : number;
     /** Reference type */
-    HASNOTIFIER : Number;
+    HASNOTIFIER : number;
     /** Reference type */
-    HASCONDITION : Number;
+    HASCONDITION : number;
 
 
     /* Modelling Rules */
 
-    MODELLINGRULE_MANDATORY : Number;
-    MODELLINGRULE_MANDATORYSHARED : Number;
+    MODELLINGRULE_MANDATORY : number;
+    MODELLINGRULE_MANDATORYSHARED : number;
 
 
     /* Data Types */
 
     /** Data Type */
-    BOOLEAN : Number;
+    BOOLEAN : number;
     /** Data Type */
-    INT16 : Number;
+    INT16 : number;
     /** Data Type */
-    UINT16 : Number;
+    UINT16 : number;
     /** Data Type */
-    INT32 : Number;
+    INT32 : number;
     /** Data Type */
-    UINT32 : Number;
+    UINT32 : number;
     /** Data Type */
-    FLOAT : Number;
+    FLOAT : number;
     /** Data Type */
-    DOUBLE : Number;
+    DOUBLE : number;
     /** Data Type */
-    STRING : Number;
+    STRING : number;
     /** Data Type */
-    DATETIME : Number;
+    DATETIME : number;
 
 
     /* Type Definitions */
 
-    BASEVARIABLETYPE : String;
-    FOLDERTYPE : String;
+    BASEVARIABLETYPE : string;
+    FOLDERTYPE : string;
 
 
     /* Value Ranks */
 
-    VALUERANK_SCALARORONEDIMENSION : Number;
-    VALUERANK_SCALARORANYDIMENSIONS : Number;
-    VALUERANK_SCALAR : Number;
-    VALUERANK_ANYDIMENSIONS : Number;
-    VALUERANK_ONEDIMENSION : Number;
+    VALUERANK_SCALARORONEDIMENSION : number;
+    VALUERANK_SCALARORANYDIMENSIONS : number;
+    VALUERANK_SCALAR : number;
+    VALUERANK_ANYDIMENSIONS : number;
+    VALUERANK_ONEDIMENSION : number;
 
 
     /* Aggregate Functions */
 
-    AGGREGATEFUNCTION_AVERAGE : Number;
-    AGGREGATEFUNCTION_TIMEAVERAGE : Number;
-    AGGREGATEFUNCTION_TOTAL : Number;
-    AGGREGATEFUNCTION_MINIMUM : Number;
-    AGGREGATEFUNCTION_MAXIMUM : Number;
-    AGGREGATEFUNCTION_COUNT : Number;
+    AGGREGATEFUNCTION_AVERAGE : number;
+    AGGREGATEFUNCTION_TIMEAVERAGE : number;
+    AGGREGATEFUNCTION_TOTAL : number;
+    AGGREGATEFUNCTION_MINIMUM : number;
+    AGGREGATEFUNCTION_MAXIMUM : number;
+    AGGREGATEFUNCTION_COUNT : number;
 }
 
 interface Server {
     database : Database
 }
 
-declare function call( script : String, params : Object ) : any;
+declare function call( script : string, params : Object ) : any;
 
 declare var server : Server;
 
