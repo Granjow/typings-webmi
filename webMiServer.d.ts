@@ -277,6 +277,43 @@ interface Server {
     database : Database
 }
 
+/**
+ * Parameter types for webMI server-side scripts
+ */
+declare namespace ScriptParameters {
+    interface Alarm {
+    }
+    interface Boolean {
+    }
+    interface Http {
+    }
+    interface HttpIp {
+    }
+    interface HttpRequest {
+        query : string;
+        content : string;
+        getvalues : Object;
+        postvalues : Object;
+    }
+    interface HttpResponse {
+    }
+    interface Interval {
+    }
+    interface Node {
+    }
+    interface Number {
+    }
+    interface Once {
+    }
+    interface Startup {
+    }
+    interface Shutdown {
+    }
+    interface String {
+    }
+    interface Timer {
+    }
+}
 declare function call( script : string, params : Object ) : any;
 
 declare var server : Server;
