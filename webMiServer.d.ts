@@ -23,6 +23,7 @@ interface BrowseArgs {
     /** See UaNode.NODECLASS_* */
     nodeclass : number;
     maxresult : number;
+    /** BASEVARIABLETYPE or FOLDERTYPE */
     typedefinition : string;
     /** Used in conjunction with typedefinition and nodeclass.
      *  If TRUE then all reachable nodes will be searched otherwise only direct referenced nodes. */
@@ -39,6 +40,7 @@ interface BrowseResultItem {
 interface CreateArgs {
     nodeclass : number;
     parent : string;
+    /** BASEVARIABLETYPE or FOLDERTYPE */
     typedefinition : number;
     reference? : string;
     modellingrule? : string;
@@ -49,7 +51,7 @@ interface CreateArgs {
     description? : string;
 
     /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
-    datatype? : string;
+    datatype? : number;
     /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
     value? : any;
     /** For NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE; optional */
@@ -145,25 +147,37 @@ interface UaNode {
     uncertain() : Status;
     equal( node1 : UaNode, node2 : UaNode );
 
-    /** NodeID of the type definition */
+    /** NodeID of the type definition, BASEVARIABLETYPE or FOLDERTYPE */
     typedefinition : string;
-
+    /** Actual value of a variable node */
     value;
+    /** Actual status of a variable node */
     status;
     servertime;
     sourcetime;
+    /** Name part of the browse name */
     browsename : string;
     browsenamens : string;
+    /** Text part of the display name */
     displayname : string;
     displaynamelocale : string;
     /** Node class enum. See UaNode.NODECLASS_### constants */
     nodeclass : string;
+    /** The node ID of the node in XML string form, e.g. ns=1;s='AGENT.OBJECTS.a' */
     nodeid : string;
+    /** The string part of the node ID, e.g.: 'AGENT.OBJECTS.a' */
     nodeaddr : string;
+    /** The data type of the variable node. E.g.: UaNode.INT32, UaNode.BOOLEAN, etc. */
     datatype : string;
+    /** The value rank of the variable node. -1=SCALAR, 0=ARRAY, 1--n=ARRAY_DIMENSION. You can use UaNode.VALUERANKSCALAR, UaNode.VALUERANKANYDIMENSIONS, etc. */
     valuerank : number;
 }
 
+/**
+ * Browse Directions: See BROWSEDIRECTION_*
+ * Node Classes: See NODECLASS_*
+ * References: See (NON)HIERARCHICALREFERENCES, HAS*, AGGREGATES, ORGANIZES
+ */
 interface UaNodeStatic {
     new( nodeAddress : string ) : UaNode;
 
@@ -230,6 +244,8 @@ interface UaNodeStatic {
 
     /** Data Type */
     BOOLEAN : number;
+    SBYTE : number;
+    BYTE : number;
     /** Data Type */
     INT16 : number;
     /** Data Type */
@@ -238,12 +254,16 @@ interface UaNodeStatic {
     INT32 : number;
     /** Data Type */
     UINT32 : number;
+    INT64 : number;
+    UINT64 : number;
     /** Data Type */
     FLOAT : number;
     /** Data Type */
     DOUBLE : number;
     /** Data Type */
     STRING : number;
+    BYTESTRING : number;
+    XMLELEMENT : number;
     /** Data Type */
     DATETIME : number;
 
