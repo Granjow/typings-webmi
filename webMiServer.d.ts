@@ -38,23 +38,58 @@ interface BrowseResultItem {
 }
 
 interface CreateArgs {
-    nodeclass : number;
-    parent : string;
-    /** BASEVARIABLETYPE or FOLDERTYPE */
-    typedefinition : number;
-    reference? : string;
-    modellingrule? : string;
-    browsename? : string;
-    browsenamens? : number;
-    displaysname? : string;
-    displaysnamelocale? : string;
-    description? : string;
 
-    /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
-    datatype? : number;
-    /** Required for NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE */
-    value? : any;
-    /** For NODECLASS_VARIABLE and NODECLASS_VARIABLETYPE; optional */
+    /** Node class, e.g. UaNode.NODECLASS_VARIABLE */
+    nodeclass : number;
+
+    /**
+     * Type definition. Can be one of the pre-defined types (UaNode.BASEVARIABLETYPE or UaNode.FOLDERTYPE),
+     * or a node ID of an existing Atvise or custom object type. For example, VariableTypes.ATVISE.Display for displays,
+     * or ObjectTypes.PROJECT.MyOwnObjectType for a custom type.
+     */
+    typedefinition : number;
+
+    /** Node ID of the parent node */
+    parent : string;
+
+    /**
+     * Type of the reference to the parent node. Defaults to UaNode.HASCOMPONENT.
+     */
+    reference? : string;
+
+    /**
+     * Describes if instances of this node should be shared amongst each other. Defaults to NULL.
+     * When a parent is an Object Type, creating an instance of it does the following to this node:
+     * – NULL: Node is not created in the instance
+     * – UaNode.MODELLINGRULE_MANDATORY: Node is created in the instance as well
+     * – UaNode.MODELLINGRULE_MANDATORYSHARED: Node is created in the instance and shared amongst all instances,
+     * i.e. it is created as reference to the OT's node. All instances see the same value.
+     */
+    modellingrule? : string;
+
+    /** Defaults to last part of the node ID (after the last dot). */
+    browsename? : string;
+
+    browsenamens? : number;
+
+    /** Custom human-readable display name for this node. Defaults to last part of the node ID. */
+    displaysname? : string;
+
+    displaysnamelocale? : string;
+
+    /** Description */
+    description? : string;
+}
+
+/**
+ * For node classes Variable and VariableType, value and datatype are mandatory.
+ */
+interface CreateVarArgs extends CreateArgs {
+    /** Data type of the variable, e.g. UaNode.INT32 */
+    datatype : string;
+    /** Value of the variable */
+    value : any;
+    /** Dimension of the variable, defaults to UaNode.VALUERANK_SCALAR */
     valuerank? : number;
 }
 
@@ -124,7 +159,7 @@ interface UaNode {
     /**
      * Creates a UaNode specified by the UaNodeID
      */
-    create( obj : CreateArgs ) : Status;
+    create( obj : CreateArgs|CreateVarArgs ) : Status;
 
     /** Removes the UaNode. Returns the status of the operation. */
     remove() : Status;
