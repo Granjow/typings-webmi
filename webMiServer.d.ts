@@ -15,20 +15,55 @@ interface Request {
 }
 
 interface BrowseArgs {
-    /** See UaNode.BROWSEDIRECTION_* */
-    direction : number;
-    /** Reference type, for example UaNode.PROPERTY */
-    reference : string;
-    subtype : boolean;
-    /** See UaNode.NODECLASS_* */
-    nodeclass : number;
-    maxresult : number;
-    /** BASEVARIABLETYPE or FOLDERTYPE */
-    typedefinition : string;
-    /** Used in conjunction with typedefinition and nodeclass.
-     *  If TRUE then all reachable nodes will be searched otherwise only direct referenced nodes. */
-    recursive : boolean;
-    exclude : string[];
+    /**
+     * See UaNode.BROWSEDIRECTION_*
+     * Defaults to forward.
+     */
+    direction? : number;
+
+    /**
+     * Reference type, for example UaNode.PROPERTY
+     * Defaults to UaNode.HIERARCHICALREFERENCES.
+     */
+    reference? : string;
+
+    /**
+     * Specifies if subtypes of the reference type are included in browse.
+     * Defaults to true.
+     */
+    subtype? : boolean;
+
+    /**
+     * Only return nodes of this node class. See UaNode.NODECLASS_*
+     * Defaults to UaNode.NODECLASS_UNSPECIFIED
+     */
+    nodeclass? : number;
+
+    /**
+     * Specifies the maximum number of the results to return.
+     * If recursive is TRUE then it is set to 0. 0 means no limit.
+     * Defaults to 0.
+     */
+    maxresult? : number;
+
+    /**
+     * Node ID of a type definition. If not Null then return only nodes of the specified types.
+     * See also UaNode.BASEVARIABLETYPE or UaNode.FOLDERTYPE
+     */
+    typedefinition? : string;
+
+    /**
+     * Used in conjunction with typedefinition and nodeclass.
+     * If TRUE then all reachable nodes will be searched otherwise only direct referenced nodes.
+     * Defaults to false.
+     */
+    recursive? : boolean;
+
+    /**
+     * If recursive is True then do not browse on branch of Objects and Variables with the specified types.
+     * Defaults to []
+     */
+    exclude? : string[];
 }
 
 interface BrowseResultItem {
