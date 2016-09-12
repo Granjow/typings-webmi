@@ -47,7 +47,12 @@ interface BrowseArgs {
     maxresult? : number;
 
     /**
-     * Node ID of a type definition. If not Null then return only nodes of the specified types.
+     * Only return nodes with this type definition (e.g. ObjectTypes.PROJECT.MyObjectType).
+     *
+     * IMPORTANT NOTE: According to the documentation, the default value is null. This is not correct. As soon as the
+     * key exists (e.g. {typedefinition: null} or even {typedefinition: undefined}), its value is used for matching
+     * the type definition. If null or undefined is used, NO RESULT AT ALL WILL BE RETURNED.
+     * 
      * See also UaNode.BASEVARIABLETYPE or UaNode.FOLDERTYPE
      */
     typedefinition? : string;
