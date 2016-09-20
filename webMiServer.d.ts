@@ -206,8 +206,13 @@ interface UaNode {
      */
     create( obj : CreateArgs|CreateVarArgs ) : number;
 
-    /** Removes the UaNode. Returns the status of the operation. */
-    remove() : Status;
+    /**
+     * Removes the UaNode. Returns the status of the operation.
+     *
+     * Returns 0 on success, or another number when the node could not be deleted,
+     * e.g. because it did not exist.
+     */
+    remove() : number;
 
     /** Returns true if the UaNode exists in the address space, false otherwise. */
     exists() : boolean;
