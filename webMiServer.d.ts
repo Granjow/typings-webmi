@@ -52,7 +52,7 @@ interface BrowseArgs {
      * IMPORTANT NOTE: According to the documentation, the default value is null. This is not correct. As soon as the
      * key exists (e.g. {typedefinition: null} or even {typedefinition: undefined}), its value is used for matching
      * the type definition. If null or undefined is used, NO RESULT AT ALL WILL BE RETURNED.
-     * 
+     *
      * See also UaNode.BASEVARIABLETYPE or UaNode.FOLDERTYPE
      */
     typedefinition? : string;
@@ -197,9 +197,14 @@ interface UaNode {
     browse( params? : BrowseArgs ) : BrowseResultItem[];
 
     /**
-     * Creates a UaNode specified by the UaNodeID
+     * Creates a UaNode specified by the UaNodeID.
+     *
+     * Possible return values:
+     * Node created: 0
+     * Node exists and was not created: 0
+     * Node created, but value did not match data type: 0
      */
-    create( obj : CreateArgs|CreateVarArgs ) : Status;
+    create( obj : CreateArgs|CreateVarArgs ) : number;
 
     /** Removes the UaNode. Returns the status of the operation. */
     remove() : Status;
