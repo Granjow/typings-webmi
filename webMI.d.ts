@@ -1,24 +1,24 @@
 declare module AtviseWebMI {
 
     export interface NodeValue {
-        value : String;
+        value : string;
         timestamp;
-        status : Number;
-        description : String;
-        address : String;
+        status : number;
+        description : string;
+        address : string;
     }
 
     export interface QueryFilter {
-        type : Array<String>;
-        address : Array<String>;
-        timestamp : Array<String>;
-        value : Array<String>;
-        priority : Array<String>;
-        username : Array<String>;
+        type : Array<string>;
+        address : Array<string>;
+        timestamp : Array<string>;
+        value : Array<string>;
+        priority : Array<string>;
+        username : Array<string>;
     }
 
     export interface Data {
-        call( name : String, params : Object, fn? : Function );
+        call( name : string, params : Object, fn? : Function );
 
         /**
          * Write one or more values to OPC UA nodes.
@@ -28,21 +28,21 @@ declare module AtviseWebMI {
          * On error, it receives an object with an `error` property.
          * Note that, when writing booleans, numbers != 0 resolve to true.
          */
-        write( nodes : String[], values : any[], fn? : Function );
-        write( nodes : String, values : any, fn? : Function );
+        write( nodes : string[], values : any[], fn? : Function );
+        write( nodes : string, values : any, fn? : Function );
 
         /**
          * Read the value of the given node
          * @param nodeId
          * @param fn Callback function
          */
-        read( nodeId : String, fn : Function ) : NodeValue;
-        read( nodeId : String[], fn : Function ) : NodeValue;
+        read( nodeId : string, fn : Function ) : NodeValue;
+        read( nodeId : string[], fn : Function ) : NodeValue;
 
-        subscribe( nodeId : String, fn : Function ) : Number;
-        subscribeBlock( nodeIds : String[], alarmIds : String[], fn : Function );
+        subscribe( nodeId : string, fn : Function ) : number;
+        subscribeBlock( nodeIds : string[], alarmIds : string[], fn : Function );
 
-        unsubscribe( subscriptionId : Number );
+        unsubscribe( subscriptionId : number );
 
         /**
          * This function makes a query to the server and requests historical data. The parameter "filters" is used
@@ -50,7 +50,7 @@ declare module AtviseWebMI {
          */
         queryFilter( filters : QueryFilter, fn : Function );
 
-        login( username : String, password : String, fn : Function );
+        login( username : string, password : string, fn : Function );
         logout( fn : Function );
 
         /**
