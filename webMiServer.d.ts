@@ -113,9 +113,9 @@ interface CreateArgs {
     browsenamens? : number;
 
     /** Custom human-readable display name for this node. Defaults to last part of the node ID. */
-    displaysname? : string;
+    displayname? : string;
 
-    displaysnamelocale? : string;
+    displaynamelocale? : string;
 
     /** Description */
     description? : string;
