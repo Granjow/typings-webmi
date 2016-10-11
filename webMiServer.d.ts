@@ -55,7 +55,7 @@ interface BrowseArgs {
      *
      * See also UaNode.BASEVARIABLETYPE or UaNode.FOLDERTYPE
      */
-    typedefinition? : string;
+    typedefinition? : number|string;
 
     /**
      * Used in conjunction with typedefinition and nodeclass.
@@ -84,10 +84,10 @@ interface CreateArgs {
 
     /**
      * Type definition. Can be one of the pre-defined types (UaNode.BASEVARIABLETYPE or UaNode.FOLDERTYPE),
-     * or a node ID of an existing Atvise or custom object type. For example, VariableTypes.ATVISE.Display for displays,
-     * or ObjectTypes.PROJECT.MyOwnObjectType for a custom type.
+     * or a node ID of an existing Atvise or custom object type. Examples for node IDs are
+     * 'VariableTypes.ATVISE.Display' for displays, or 'ObjectTypes.PROJECT.MyOwnObjectType' for a custom type.
      */
-    typedefinition : number;
+    typedefinition : number|string;
 
     /** Node ID of the parent node */
     parent : string;
@@ -105,7 +105,7 @@ interface CreateArgs {
      * – UaNode.MODELLINGRULE_MANDATORYSHARED: Node is created in the instance and shared amongst all instances,
      * i.e. it is created as reference to the OT's node. All instances see the same value.
      */
-    modellingrule? : string;
+    modellingrule? : number|string;
 
     /** Defaults to last part of the node ID (after the last dot). */
     browsename? : string;
@@ -126,7 +126,7 @@ interface CreateArgs {
  */
 interface CreateVarArgs extends CreateArgs {
     /** Data type of the variable, e.g. UaNode.INT32 */
-    datatype : string;
+    datatype : number|string;
     /** Value of the variable */
     value : any;
     /** Dimension of the variable, defaults to UaNode.VALUERANK_SCALAR */
@@ -233,7 +233,7 @@ interface UaNode {
     equal( node1 : UaNode, node2 : UaNode );
 
     /** NodeID of the type definition, BASEVARIABLETYPE or FOLDERTYPE */
-    typedefinition : string;
+    typedefinition : number|string;
     /** Actual value of a variable node */
     value;
     /** Actual status of a variable node */
@@ -253,7 +253,7 @@ interface UaNode {
     /** The string part of the node ID, e.g.: 'AGENT.OBJECTS.a' */
     nodeaddr : string;
     /** The data type of the variable node. E.g.: UaNode.INT32, UaNode.BOOLEAN, etc. */
-    datatype : string;
+    datatype : number|string;
     /** The value rank of the variable node. -1=SCALAR, 0=ARRAY, 1--n=ARRAY_DIMENSION. You can use UaNode.VALUERANKSCALAR, UaNode.VALUERANKANYDIMENSIONS, etc. */
     valuerank : number;
 }
