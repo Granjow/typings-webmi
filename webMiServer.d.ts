@@ -75,6 +75,10 @@ interface BrowseResultItem {
     node : UaNode;
     reference : UaNode;
     isforward : boolean;
+    /**
+     * The parent node is set if the node was browsed recursively.
+     */
+    parent? : UaNode;
 }
 
 interface CreateArgs {
